@@ -1,5 +1,5 @@
 import numpy as np
-from activations import sigmoid , sigmoid_derivative
+from activations import sigmoid , sigmoid_derivative, ReLU, ReLU_derivative, linear, derivative_linear
 
 class DenseLayer:
     # the input dim is the (n) and the output is (h). for notations look into the forward pass doc.
@@ -17,19 +17,22 @@ class DenseLayer:
         self.Z = np.dot(self.A_prev, self.W) + self.b
 
         if self.activation_function == "relu":
-            self.A = np.maximum(0, self.Z)
+            self.A = ReLU(self.Z)
         elif self.activation_function == "sigmoid":
             self.A = sigmoid(self.Z)
-
+        elif self.activation_function == "linear":
+            self.A = linear(self.Z)
         return self.A
 
 
     def backward(self, dA):
 
         if self.activation_function == "relu":
-            self.dZ = dA * (self.Z > 0)
+            self.dZ = dA * (ReLU_derivative(self.Z))
         elif self.activation_function == "sigmoid":
             self.dZ = dA * (sigmoid_derivative(self.A)) 
+        elif self.activation_function == "linear":
+            self.dZ = dA * (derivative_linear(self.A)) 
 
         self.dW = np.dot(self.A_prev.T, self.dZ) 
 

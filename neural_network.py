@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class NeuralNetwork:
     def __init__(self):
         self.layers = []
@@ -24,3 +25,7 @@ class NeuralNetwork:
 
         for layer in reversed(self.layers):
             dA = layer.backward(dA)
+
+    def update(self, lr):
+        for layer in self.layers:
+            layer.update(lr)

@@ -39,3 +39,6 @@ class DenseLayer:
 
         return dA_prev
 
+    def update(self, learning_rate):
+        self.W = self.W - learning_rate*self.dW
+        self.b = self.b - learning_rate*self.db

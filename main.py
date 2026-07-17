@@ -3,8 +3,8 @@ import dense_layer
 import neural_network
 import numpy as np
 
-lr = .01
-n_epochs = 10
+lr = .001
+n_epochs = 1000
 n_layers = 2
 n_neurons = [10, 100 , 1000]
 
@@ -35,4 +35,4 @@ def train(X, y, model):
 if __name__ == "__main__":
     for i in n_neurons:
         model = build_network(n_layers, n_features, n_outputs, i)
-        train(data_generation.X, data_generation.y, model)
+        train(data_generation.X_scaled, data_generation.y, model)

@@ -15,5 +15,11 @@ def ReLU_derivative(Z):
 def linear(Z):
 	return Z
 
-def derivative_linear(Z):
+def linear_derivative(Z):
 	return 1
+
+def tanh(Z):
+	return np.tanh(Z)
+
+def tanh_derivative(Z):
+	return 1 - (np.tanh(Z) ** 2)

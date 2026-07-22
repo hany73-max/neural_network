@@ -1,5 +1,5 @@
 import numpy as np
-from activations import sigmoid , sigmoid_derivative, ReLU, ReLU_derivative, linear, derivative_linear
+from src.activations import sigmoid , sigmoid_derivative, ReLU, ReLU_derivative, linear, linear_derivative , tanh , tanh_derivative
 
 class DenseLayer:
     # the input dim is the (n) and the output is (h). for notations look into the forward pass doc.
@@ -22,6 +22,8 @@ class DenseLayer:
             self.A = sigmoid(self.Z)
         elif self.activation_function == "linear":
             self.A = linear(self.Z)
+        elif self.activation_function == "tanh":
+            self.A = tanh(self.Z)
         return self.A
 
 
@@ -32,7 +34,9 @@ class DenseLayer:
         elif self.activation_function == "sigmoid":
             self.dZ = dA * (sigmoid_derivative(self.A)) 
         elif self.activation_function == "linear":
-            self.dZ = dA * (derivative_linear(self.A)) 
+            self.dZ = dA * (linear_derivative(self.A)) 
+        elif self.activation_function == "tanh":
+            self.dZ = dA * (tanh_derivative(self.Z))
 
         self.dW = np.dot(self.A_prev.T, self.dZ) 
 

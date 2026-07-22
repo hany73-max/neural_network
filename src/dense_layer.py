@@ -4,9 +4,15 @@ from src.activations import sigmoid , sigmoid_derivative, ReLU, ReLU_derivative,
 class DenseLayer:
     # the input dim is the (n) and the output is (h). for notations look into the forward pass doc.
     def __init__(self, input_dim, output_dim, activation_function):
-        self.W = np.random.randn(input_dim, output_dim) * 0.01
-        self.b = np.zeros((1, output_dim))
         self.activation_function = activation_function.lower()
+
+        if self.activation_function == "relu":
+            scale = np.sqrt(2 / input_dim)      # He init
+        else:
+            scale = np.sqrt(1 / input_dim)      # Xavier init (tanh/sigmoid/linear)
+
+        self.W = np.random.randn(input_dim, output_dim) * scale
+        self.b = np.zeros((1, output_dim))
 
         self.dZ = None
         self.dW = None

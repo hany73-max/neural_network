@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 lr = .001
-n_epochs = 1000
+n_epochs = 5000
 n_layers = 3
 n_neurons = [1000]
 VALID_HIDDEN_ACTIVATIONS = ["relu", "sigmoid", "tanh"]
